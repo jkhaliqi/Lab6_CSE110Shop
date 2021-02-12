@@ -10,16 +10,16 @@ class ProductItem extends HTMLElement {
     li.setAttribute('class', 'product');
     let img = document.createElement('img');
     li.appendChild(img);
-    let title = document.createElement('title');
+    let title = document.createElement('p');
+    title.setAttribute('class','title');
     li.appendChild(title);
-
-    
+    let price = document.createElement('p');
+    price.setAttribute('class','price');
+    li.appendChild(price);
 
 
     let style = document.createElement('style');
     style.setAttribute('class','style');
-
-
     style.textContent = `
     .price {
       color: green;
@@ -93,16 +93,17 @@ class ProductItem extends HTMLElement {
   set imgSrc(src){
     this.shadowRoot.querySelector('img').src = src;
   }
-  set title(title) {
-    this.shadowRoot.querySelector('.title').title = title;
+  set titles(title) {
+    this.shadowRoot.querySelector(".title").innerHTML= title;
+  }
+  set price(price) {
+    this.shadowRoot.querySelector(".price").innerHTML = price;
   }
   
 
 
 
 }
-
-
 
 customElements.define('product-item', ProductItem);
 
