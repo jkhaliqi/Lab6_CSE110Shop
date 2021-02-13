@@ -19,6 +19,20 @@ class ProductItem extends HTMLElement {
     let button = document.createElement('button');
     button.innerHTML="Add to Cart";
     li.appendChild(button);
+    let count = document.getElementById("cart-count");
+
+    button.addEventListener('click',add);
+    function add() {
+      if(button.innerHTML == "Add to Cart"){
+        button.innerHTML="Remove from Cart";
+        count.innerHTML++;
+      }
+      else {
+        button.innerHTML="Add to Cart";
+        count.innerHTML--;
+      }
+    }
+
 
 
     let style = document.createElement('style');
@@ -105,18 +119,6 @@ class ProductItem extends HTMLElement {
   set price(price) {
     this.shadowRoot.querySelector(".price").innerHTML = price;
   }
-
-  Cart() {
-    
-  }
-
-
-
-
-
-
-
-
 
 
 
