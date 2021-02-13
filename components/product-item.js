@@ -27,7 +27,6 @@ class ProductItem extends HTMLElement {
         let count = countref.innerHTML;
         count++;
         countref.innerHTML = count;
-        //new
         window.localStorage.setItem(price.innerHTML,title.innerHTML); 
         window.localStorage.setItem("count", count);
       }
