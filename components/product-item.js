@@ -1,5 +1,4 @@
 // product-item.js
-
 class ProductItem extends HTMLElement {
   // TODO
   constructor(data){
@@ -16,11 +15,11 @@ class ProductItem extends HTMLElement {
     let price = document.createElement('p');
     price.setAttribute('class','price');
     li.appendChild(price);
+    
     let button = document.createElement('button');
     button.innerHTML="Add to Cart";
     li.appendChild(button);
     let count = document.getElementById("cart-count");
-
     button.addEventListener('click',add);
     function add() {
       if(button.innerHTML == "Add to Cart"){
@@ -32,8 +31,6 @@ class ProductItem extends HTMLElement {
         count.innerHTML--;
       }
     }
-
-
 
     let style = document.createElement('style');
     style.setAttribute('class','style');
@@ -120,11 +117,6 @@ class ProductItem extends HTMLElement {
     this.shadowRoot.querySelector(".price").innerHTML = price;
   }
 
-
-
-
-
 }
 
 customElements.define('product-item', ProductItem);
-
