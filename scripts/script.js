@@ -6,16 +6,8 @@ window.addEventListener('DOMContentLoaded', () => {
   myFetch.then(response => response.json())
   .then(function(data) {
       window.localStorage.setItem("productList",JSON.stringify(data));
-      let purchasing = JSON.parse(localStorage.getItem("productList")); //new
       for(let i = 0; i < data.length; i++){
-        //neew
-        let inCart = false;
-        if(purchasing[i] != null){
-          if(window.localStorage.getItem(purchasing[i].id != null)){
-            inCart = true;
-          }
-          let productItem = new ProductItem(inCart);
-          productItem = document.createElement('product-item');
+        productItem = document.createElement('product-item');
           productItem.imgSrc=data[i].image;
           productItem.imgAlt=data[i].title;
           productItem.titles=data[i].title;
@@ -23,8 +15,7 @@ window.addEventListener('DOMContentLoaded', () => {
           list.appendChild(productItem);
         }
       }
-  })
-});
+)})
 
 let screenCount = document.getElementById("cart-count");
 let count = window.localStorage.getItem("count");

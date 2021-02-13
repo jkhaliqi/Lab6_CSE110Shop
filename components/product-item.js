@@ -1,7 +1,7 @@
 // product-item.js
 class ProductItem extends HTMLElement {
   // TODO
-  constructor(data, inCart){
+  constructor(data){
     super();
     let shadow = this.attachShadow({mode: 'open'});
 
@@ -16,30 +16,25 @@ class ProductItem extends HTMLElement {
     price.setAttribute('class','price');
     li.appendChild(price);
     
-    let button = document.createElement('button');
-    button.innerHTML="Add to Cart";
+    var button = document.createElement('button');
     li.appendChild(button);
-    //new
-    if(inCart){
-      button.innerHTML="Remove from Cart";
-    }
-    //end new
+
     button.addEventListener('click',add);
     function add() {
       if(button.innerHTML == "Add to Cart"){
         button.innerHTML="Remove from Cart";
-        var countref = document.getElementById("cart-count"); 
-        var count = countref.innerHTML;
+        let countref = document.getElementById("cart-count"); 
+        let count = countref.innerHTML;
         count++;
         countref.innerHTML = count;
         //new
-        window.localStorage.setItem(title.innerHTML,"dont matter");
+        window.localStorage.setItem(title.innerHTML,price.innerHTML);
         window.localStorage.setItem("count", count);
       }
       else {
         button.innerHTML="Add to Cart";
-        var countref = document.getElementById("cart-count"); 
-        var count = countref.innerHTML;
+        let countref = document.getElementById("cart-count"); 
+        let count = countref.innerHTML;
         count--;
         countref.innerHTML = count;
         window.localStorage.removeItem(title.innerHTML);
@@ -127,6 +122,12 @@ class ProductItem extends HTMLElement {
   }
   set titles(title) {
     this.shadowRoot.querySelector(".title").innerHTML= title;
+    if(window.localStorage.getItem(title) != null){
+      this.shadowRoot.querySelector("button").innerHTML="Remove from Cart"
+    }
+    else{
+      this.shadowRoot.querySelector("button").innerHTML="Add to Cart";
+    }
   }
   set price(price) {
     this.shadowRoot.querySelector(".price").innerHTML = price;
