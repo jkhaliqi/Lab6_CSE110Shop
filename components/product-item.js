@@ -1,7 +1,7 @@
 // product-item.js
 class ProductItem extends HTMLElement {
   // TODO
-  constructor(data){
+  constructor(data, inCart){
     super();
     let shadow = this.attachShadow({mode: 'open'});
 
@@ -19,16 +19,31 @@ class ProductItem extends HTMLElement {
     let button = document.createElement('button');
     button.innerHTML="Add to Cart";
     li.appendChild(button);
-    let count = document.getElementById("cart-count");
+    //new
+    if(inCart){
+      button.innerHTML="Remove from Cart";
+    }
+    //end new
     button.addEventListener('click',add);
     function add() {
       if(button.innerHTML == "Add to Cart"){
         button.innerHTML="Remove from Cart";
-        count.innerHTML++;
+        var countref = document.getElementById("cart-count"); 
+        var count = countref.innerHTML;
+        count++;
+        countref.innerHTML = count;
+        //new
+        window.localStorage.setItem(title.innerHTML,"dont matter");
+        window.localStorage.setItem("count", count);
       }
       else {
         button.innerHTML="Add to Cart";
-        count.innerHTML--;
+        var countref = document.getElementById("cart-count"); 
+        var count = countref.innerHTML;
+        count--;
+        countref.innerHTML = count;
+        window.localStorage.removeItem(title.innerHTML);
+        window.localStorage.setItem("count", count);
       }
     }
 
