@@ -16,6 +16,9 @@ class ProductItem extends HTMLElement {
     let price = document.createElement('p');
     price.setAttribute('class','price');
     li.appendChild(price);
+    let button = document.createElement('button');
+    button.innerHTML="Add to Cart";
+    li.appendChild(button);
 
 
     let style = document.createElement('style');
@@ -93,13 +96,29 @@ class ProductItem extends HTMLElement {
   set imgSrc(src){
     this.shadowRoot.querySelector('img').src = src;
   }
+  set imgAlt(alt) {
+    this.shadowRoot.querySelector('img').alt= alt;
+  }
   set titles(title) {
     this.shadowRoot.querySelector(".title").innerHTML= title;
   }
   set price(price) {
     this.shadowRoot.querySelector(".price").innerHTML = price;
   }
-  
+
+  Cart() {
+    
+  }
+
+
+
+
+
+
+
+
+
+
 
 
 

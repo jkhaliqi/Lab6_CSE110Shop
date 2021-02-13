@@ -9,8 +9,10 @@ window.addEventListener('DOMContentLoaded', () => {
       for(i = 0; i < data.length; i++){
         let productItem = document.createElement('product-item');
         productItem.imgSrc=data[i].image;
+        productItem.imgAlt=data[i].title;
         productItem.titles=data[i].title;
         productItem.price=data[i].price;
+        productItem.button="add";
         list.appendChild(productItem);
       }
   })
