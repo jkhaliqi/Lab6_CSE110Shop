@@ -18,15 +18,12 @@ class ProductItem extends HTMLElement {
     
     var button = document.createElement('button');
     li.appendChild(button);
-
-
     if(window.localStorage.getItem(id) != null) {
       button.innerHTML="Remove from Cart";     
     }
     else {
       button.innerHTML="Add to Cart";     
     }
-
     button.addEventListener('click',add);
     function add() {
       if(button.innerHTML == "Add to Cart"){
@@ -48,7 +45,7 @@ class ProductItem extends HTMLElement {
         window.localStorage.setItem("count", count);
       }
     }
-
+    
     let style = document.createElement('style');
     style.setAttribute('class','style');
     style.textContent = `
