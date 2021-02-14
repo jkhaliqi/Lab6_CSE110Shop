@@ -17,7 +17,6 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       }
 )})
-
 let screenCount = document.getElementById("cart-count");
 let count = window.localStorage.getItem("count");
 screenCount.innerHTML = count;
