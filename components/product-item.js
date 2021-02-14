@@ -1,7 +1,7 @@
 // product-item.js
 class ProductItem extends HTMLElement {
   // TODO
-  constructor(data){
+  constructor(id){
     super();
     let shadow = this.attachShadow({mode: 'open'});
     
@@ -19,6 +19,14 @@ class ProductItem extends HTMLElement {
     var button = document.createElement('button');
     li.appendChild(button);
 
+
+    if(window.localStorage.getItem(id) != null) {
+      button.innerHTML="Remove from Cart";     
+    }
+    else {
+      button.innerHTML="Add to Cart";     
+    }
+
     button.addEventListener('click',add);
     function add() {
       if(button.innerHTML == "Add to Cart"){
@@ -27,7 +35,7 @@ class ProductItem extends HTMLElement {
         let count = countref.innerHTML;
         count++;
         countref.innerHTML = count;
-        window.localStorage.setItem(price.innerHTML,title.innerHTML); 
+        window.localStorage.setItem(id,price.innerHTML); 
         window.localStorage.setItem("count", count);
       }
       else {
@@ -36,7 +44,7 @@ class ProductItem extends HTMLElement {
         let count = countref.innerHTML;
         count--;
         countref.innerHTML = count;
-        window.localStorage.removeItem(price.innerHTML);
+        window.localStorage.removeItem(id);
         window.localStorage.setItem("count", count);
       }
     }
@@ -124,12 +132,6 @@ class ProductItem extends HTMLElement {
   }
   set price(price) {
     this.shadowRoot.querySelector(".price").innerHTML = price;
-    if(window.localStorage.getItem(price) != null) {
-      this.shadowRoot.querySelector("button").innerHTML="Remove from Cart";
-    }
-    else {
-      this.shadowRoot.querySelector("button").innerHTML="Add to Cart";
-    }
   }
 
 }

@@ -6,8 +6,9 @@ window.addEventListener('DOMContentLoaded', () => {
   myFetch.then(response => response.json())
   .then(function(data) {
       window.localStorage.setItem("productList",JSON.stringify(data));
+      var products = JSON.parse(localStorage.getItem("productList"));
       for(let i = 0; i < data.length; i++){
-        productItem = document.createElement('product-item');
+        var productItem = new ProductItem(products[i].id);
           productItem.imgSrc=data[i].image;
           productItem.imgAlt=data[i].title;
           productItem.titles=data[i].title;
